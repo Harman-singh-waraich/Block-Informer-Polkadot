@@ -42,9 +42,9 @@ function Main () {
   if (apiState === 'ERROR') return message(apiError);
   else if (apiState !== 'READY') return loader('Connecting to Substrate');
 
-  if (keyringState !== 'READY') {
-    return loader('Loading accounts (please review any extension\'s authorization)');
-  }
+  // if (keyringState !== 'READY') {
+  //   return loader('Loading accounts (please review any extension\'s authorization)');
+  // }
 
   const contextRef = createRef();
 
