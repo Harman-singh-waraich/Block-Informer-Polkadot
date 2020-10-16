@@ -15,7 +15,7 @@ import NodeInfo from './NodeInfo';
 import TemplateModule from './TemplateModule';
 import Transfer from './Transfer';
 import Upgrade from './Upgrade';
-
+import Blockinfo from "./Blockinfo";
 function Main () {
   const [accountAddress, setAccountAddress] = useState(null);
   const { apiState, keyring, keyringState, apiError } = useSubstrate();
@@ -50,30 +50,20 @@ function Main () {
 
   return (
     <div ref={contextRef}>
-      <Sticky context={contextRef}>
-        <AccountSelector setAccountAddress={setAccountAddress} />
-      </Sticky>
+      <div style={{height:100}}></div>
+ 
       <Container>
         <Grid stackable columns='equal'>
+        <Grid.Row style={{fontSize:40}}>
+        Block Informer
+        </Grid.Row>
           <Grid.Row stretched>
             <NodeInfo />
-            <Metadata />
             <BlockNumber />
             <BlockNumber finalized />
           </Grid.Row>
           <Grid.Row stretched>
-            <Balances />
-          </Grid.Row>
-          <Grid.Row>
-            <Transfer accountPair={accountPair} />
-            <Upgrade accountPair={accountPair} />
-          </Grid.Row>
-          <Grid.Row>
-            <Interactor accountPair={accountPair} />
-            <Events />
-          </Grid.Row>
-          <Grid.Row>
-            <TemplateModule accountPair={accountPair} />
+            <Blockinfo/>
           </Grid.Row>
         </Grid>
       </Container>
