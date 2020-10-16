@@ -4,23 +4,24 @@ import { Icon, Table , Grid} from 'semantic-ui-react'
 
 function Blockinfo () {
   const { api,keyring } = useSubstrate();
-  const [block, setBlockInfo] = useState({parentHash:"",
-                                                            number:"",
-                                                            stateRoot:"",
-                                                            extrinsicsRoot:"",
-                                                            digest:""});
+  const [block, setBlockInfo] = useState({hash:"",
+                                          parentHash:"",
+                                          number:"",
+                                          stateRoot:"",
+                                          extrinsicsRoot:"",
+                                          digest:""});
 
  
   useEffect(() => {
     api.derive.chain.subscribeNewHeads(header =>{
         setBlockInfo({
+            hash:header.hash.toString(),
             parentHash:header.parentHash.toString(),
             number:header.number.toString(),
             stateRoot:header.stateRoot.toString(),
             extrinsicsRoot:header.extrinsicsRoot.toString(),
             digest:header.digest.toString()
-        })
-        
+        })     
   });
   }, [api, keyring, setBlockInfo]);
 
@@ -34,6 +35,12 @@ function Blockinfo () {
           </Table.Header>
       
           <Table.Body>
+          <Table.Row>
+              <Table.Cell collapsing>
+                <Icon name='tags' /> Hash
+              </Table.Cell>
+              <Table.Cell>{block.hash}</Table.Cell>
+            </Table.Row>
             <Table.Row>
               <Table.Cell collapsing>
                 <Icon name='tags' /> Parent Hash
